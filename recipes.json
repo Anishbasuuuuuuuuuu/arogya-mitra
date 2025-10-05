@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Palak Paneer",
+    "keywords": ["spinach", "palak", "paneer", "onion", "tomato", "ginger", "garlic"],
+    "description": "A classic North Indian dish with cottage cheese in a smooth spinach gravy.",
+    "instructions": "1. Blanch spinach and make a puree. 2. Sauté onion, ginger, garlic, and tomato. 3. Add spinach puree and spices. 4. Add paneer cubes and simmer."
+  },
+  {
+    "name": "Masoor Dal Tadka",
+    "keywords": ["dal", "lentils", "masoor", "onion", "tomato", "garlic"],
+    "description": "A comforting and protein-rich red lentil curry, perfect with rice.",
+    "instructions": "1. Pressure cook masoor dal with turmeric and salt. 2. Prepare a 'tadka' by frying cumin seeds, garlic, and onions. 3. Add tomatoes and spices. 4. Pour the tadka over the cooked dal."
+  },
+  {
+    "name": "Vegetable Poha",
+    "keywords": ["poha", "flattened rice", "onion", "peas", "potato", "carrot"],
+    "description": "A light and healthy breakfast popular in Western India.",
+    "instructions": "1. Gently rinse poha and let it soften. 2. Sauté mustard seeds, onions, and chopped vegetables. 3. Add poha, turmeric, salt, and a little sugar. Mix and steam."
+  },
+  {
+    "name": "Aloo Gobi",
+    "keywords": ["potato", "aloo", "cauliflower", "gobi", "onion", "tomato"],
+    "description": "A simple and popular dry curry made with potatoes and cauliflower.",
+    "instructions": "1. Sauté cumin seeds, onion, and ginger-garlic paste. 2. Add potato and cauliflower florets, turmeric, and other spices. 3. Cover and cook on low heat until vegetables are tender."
+  },
+  {
+    "name": "Chole (Chana Masala)",
+    "keywords": ["chickpeas", "chole", "chana", "onion", "tomato", "ginger"],
+    "description": "A delicious and flavorful chickpea curry from the Punjab region.",
+    "instructions": "1. Sauté onions, ginger, and garlic. 2. Add tomato puree and chole masala spices. 3. Add boiled chickpeas and simmer until the gravy thickens."
+  },
+  {
+    "name": "Bhindi Masala",
+    "keywords": ["okra", "bhindi", "ladyfinger", "onion", "tomato"],
+    "description": "A simple and tasty stir-fried okra dish.",
+    "instructions": "1. Sauté chopped okra (bhindi) until it's no longer slimy. Set aside. 2. In the same pan, sauté onions and tomatoes with spices. 3. Add the fried okra back and mix well."
+  },
+  {
+    "name": "Egg Curry",
+    "keywords": ["egg", "anda", "onion", "tomato", "ginger", "garlic"],
+    "description": "Boiled eggs simmered in a rich and spicy onion-tomato gravy.",
+    "instructions": "1. Make a gravy by sautéing onion, ginger-garlic paste, and tomato puree. 2. Add spices like turmeric, chili powder, and garam masala. 3. Add peeled, hard-boiled eggs and simmer."
+  },
+  {
+    "name": "Lemon Rice",
+    "keywords": ["rice", "lemon", "peanuts", "mustard seeds"],
+    "description": "A tangy and flavorful South Indian rice dish.",
+    "instructions": "1. Prepare a 'tadka' with oil, mustard seeds, lentils, and peanuts. 2. Add turmeric and cooked rice. Mix well. 3. Turn off the heat and mix in fresh lemon juice."
+  },
+  {
+    "name": "Baingan Bharta",
+    "keywords": ["eggplant", "brinjal", "baingan", "onion", "tomato", "peas"],
+    "description": "A smoky and flavorful dish made from roasted and mashed eggplant.",
+    "instructions": "1. Roast a large eggplant over an open flame until the skin is charred. 2. Peel the skin and mash the pulp. 3. Sauté onions, tomatoes, and peas with spices. 4. Add the mashed eggplant and cook."
+  },
+  {
+    "name": "Chicken Tikka Masala",
+    "keywords": ["chicken", "yogurt", "dahi", "tomato", "cream"],
+    "description": "Grilled chicken chunks (tikka) in a creamy, spiced curry sauce.",
+    "instructions": "1. Marinate chicken chunks in yogurt and spices, then grill or pan-fry. 2. Make a creamy gravy with tomatoes, onions, cashews, and cream. 3. Add the cooked chicken to the gravy and simmer."
+  },
+  {
+    "name": "Rajma Masala",
+    "keywords": ["kidney beans", "rajma", "onion", "tomato", "ginger"],
+    "description": "A beloved North Indian curry made with red kidney beans.",
+    "instructions": "1. Pressure cook soaked kidney beans until soft. 2. Make a gravy with onion, tomato, ginger-garlic paste, and spices. 3. Add the cooked rajma and simmer to perfection."
+  },
+  {
+    "name": "Sambar",
+    "keywords": ["lentils", "dal", "toor dal", "tamarind", "vegetables", "drumstick"],
+    "description": "A flavorful South Indian lentil and vegetable stew.",
+    "instructions": "1. Cook toor dal with turmeric. 2. In a separate pot, cook mixed vegetables with tamarind water and sambar powder. 3. Combine the cooked dal and vegetables and bring to a simmer. 4. Add a final 'tadka' of mustard seeds and curry leaves."
+  },
+  {
+    "name": "Mushroom Matar",
+    "keywords": ["mushroom", "peas", "matar", "onion", "tomato"],
+    "description": "A delicious curry made with mushrooms and green peas.",
+    "instructions": "1. Make a standard onion-tomato gravy with ginger and garlic. 2. Add mushrooms and peas and cook until tender. 3. Finish with garam masala and coriander."
+  },
+  {
+    "name": "Gajar ka Halwa",
+    "keywords": ["carrot", "gajar", "milk", "sugar", "ghee"],
+    "description": "A classic and rich Indian dessert made from grated carrots.",
+    "instructions": "1. Sauté grated carrots in ghee for a few minutes. 2. Add milk and cook until the milk is absorbed and the carrots are soft. 3. Add sugar, cardamom, and nuts. Cook until the mixture thickens."
+  },
+  {
+    "name": "Lauki ki Sabzi",
+    "keywords": ["bottle gourd", "lauki", "dudhi", "tomato", "cumin"],
+    "description": "A simple and light curry made from bottle gourd.",
+    "instructions": "1. Sauté cumin seeds and asafoetida (hing). 2. Add chopped bottle gourd, tomatoes, and basic spices. 3. Cover and cook until the lauki is soft and translucent."
+  }
+]

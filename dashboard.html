@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Arogya Mitra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'forest': '#228B22', 'saffron': '#FF9933' }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body style="background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(83, 201, 47, 0.85)), url('dashbacck.jpg'); background-size: cover; background-position: center; background-attachment: fixed;"></body>
+
+    <script type="module">import { protectPage } from './auth.js'; protectPage();</script>
+
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="AROGYA MITRA.png" alt="Arogya Mitra Logo" class="h-10 w-auto">
+                <span class="text-xl font-bold text-forest">Arogya Mitra</span>
+            </div>
+            <button id="logoutBtn" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full font-semibold text-sm hover:bg-gray-300">Logout</button>
+        </div>
+    </header>
+    
+    <main class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+        <h1 class="text-3xl font-bold text-forest">Welcome <span id="user-name"></span>Hero</h1>
+        <p class="mt-2 text-gray-600">This is your personal wellness hub. What would you like to do today?</p>
+        
+      <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    
+    <div class="lg:col-span-2 space-y-8">
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Daily Calorie Tracker</h2>
+            <div class="w-full bg-gray-200 rounded-full h-6">
+                <div id="calorie-progress" class="bg-saffron h-6 rounded-full text-center text-white font-bold text-sm leading-6 transition-all duration-500" style="width: 0%;">0%</div>
+            </div>
+            <div class="flex justify-between text-sm font-medium text-gray-600 mt-2">
+                <span><span id="calories-consumed">0</span> kcal consumed</span>
+                <span>Goal: <span id="calorie-goal">2000</span> kcal <button id="edit-goal-btn" class="ml-2 text-sm text-blue-500 hover:underline focus:outline-none">[Edit]</button></span>
+            </div>
+            <div class="mt-4 flex items-center space-x-2">
+                <input id="calorie-input" type="number" placeholder="Enter calories" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                <button id="add-calorie-btn" class="bg-forest text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Add</button>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Water Intake</h2>
+            <div class="flex items-center space-x-4">
+                <div id="water-icons" class="flex-1 grid grid-cols-8 gap-2">
+                    </div>
+                <button id="add-water-btn" class="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center text-2xl font-bold hover:bg-blue-600">+</button>
+            </div>
+             <p class="text-sm text-gray-600 mt-2"><span id="water-count">0</span> of 8 glasses</p>
+        </div>
+    </div>
+
+    <div class="space-y-8">
+        <div class="bg-gradient-to-br from-forest to-sage text-white p-6 rounded-2xl shadow-lg">
+            <h3 class="font-bold text-lg mb-2">🌿 Daily Wellness Tip</h3>
+            <p id="daily-tip" class="text-sm">A new tip will appear here every day!</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-2">Recipe Suggester</h2>
+    <p class="text-gray-600 mb-4">Have ingredients but no ideas? List them below and find a healthy Indian recipe from our book!</p>
+    <div class="space-y-4">
+        <textarea id="ingredients-input-book" rows="3" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="e.g., paneer, capsicum, onion..."></textarea>
+        <button id="suggest-meal-btn-book" class="w-full bg-forest text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700">
+            Find a Recipe
+        </button>
+    </div>
+    <div id="meal-suggestion-result-book" class="mt-4 p-4 bg-gray-50 rounded-lg" style="display: none;">
+        </div>
+</div>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">BMI Calculator</h2>
+    <div class="grid grid-cols-2 gap-4">
+        <div>
+            <label for="height-input" class="block text-sm font-medium text-gray-700">Height (cm)</label>
+            <input id="height-input" type="number" placeholder="e.g., 175" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg">
+        </div>
+        <div>
+            <label for="weight-input" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
+            <input id="weight-input" type="number" placeholder="e.g., 70" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-lg">
+        </div>
+    </div>
+    <button id="calculate-bmi-btn" class="mt-4 w-full bg-forest text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Calculate & Save</button>
+    <div id="bmi-result" class="mt-4 text-center font-semibold"></div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Your Weekly Progress</h2>
+    <div class="flex justify-around items-end h-48 border-b border-gray-300 pb-2">
+        </div>
+    <div id="weekly-chart-labels" class="flex justify-around text-xs text-gray-500 font-medium pt-2">
+        </div>
+</div>
+</div>
+
+    <script type="module">
+        import { auth, db } from './firebase.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+        import { logoutUser } from './auth.js';
+
+        const logoutBtn = document.getElementById('logoutBtn');
+        const userNameDisplay = document.getElementById('user-name');
+        const upgradeBtn = document.getElementById('upgradeBtn');
+
+        // --- Logic to Display User Name ---
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const userDocRef = doc(db, "users", user.uid);
+                const userDoc = await getDoc(userDocRef);
+                if (userDoc.exists() && userDoc.data().displayName) {
+                    userNameDisplay.textContent = userDoc.data().displayName;
+                } else {
+                    // Fallback to the name part of the email
+                    userNameDisplay.textContent = user.email.split('@')[0];
+                }
+            }
+        });
+        
+        // --- Logic for Logout Button ---
+        logoutBtn.addEventListener('click', logoutUser);
+        // --- FEATURE LOGIC ---
+const today = new Date().toISOString().split('T')[0]; // Get date as YYYY-MM-DD
+
+// --- Calorie Tracker ---
+const calorieProgress = document.getElementById('calorie-progress');
+const caloriesConsumedDisplay = document.getElementById('calories-consumed');
+const calorieGoalDisplay = document.getElementById('calorie-goal');
+const editGoalBtn = document.getElementById('edit-goal-btn');
+const addCalorieBtn = document.getElementById('add-calorie-btn');
+const calorieInput = document.getElementById('calorie-input');
+
+// Load the user's custom goal from localStorage, or use 2000 as a default.
+let calorieGoal = Number(localStorage.getItem('calorieGoal')) || 2000;
+let caloriesConsumed = Number(localStorage.getItem(`calories_${today}`)) || 0;
+
+const updateCalorieUI = () => {
+    calorieGoalDisplay.textContent = calorieGoal;
+    caloriesConsumedDisplay.textContent = caloriesConsumed;
+    const percentage = Math.min((caloriesConsumed / calorieGoal) * 100, 100);
+    calorieProgress.style.width = `${percentage}%`;
+    calorieProgress.textContent = `${Math.round(percentage)}%`;
+};
+
+// Event listener for the ADD button
+addCalorieBtn.addEventListener('click', () => {
+    const newCalories = Number(calorieInput.value);
+    if (newCalories > 0) {
+        caloriesConsumed += newCalories;
+        localStorage.setItem(`calories_${today}`, caloriesConsumed);
+        updateCalorieUI();
+        calorieInput.value = '';
+    }
+});
+
+// Event listener for the NEW EDIT button
+editGoalBtn.addEventListener('click', () => {
+    const newGoal = prompt("Please enter your new daily calorie goal:", calorieGoal);
+    if (newGoal && !isNaN(newGoal) && newGoal > 0) {
+        calorieGoal = Number(newGoal);
+        localStorage.setItem('calorieGoal', calorieGoal); // Save the new goal
+        updateCalorieUI(); // Update the display immediately
+    } else if (newGoal) {
+        alert("Please enter a valid number for your goal.");
+    }
+});
+
+updateCalorieUI(); // Initial UI update on page load
+
+// --- Water Tracker ---
+const waterIconsContainer = document.getElementById('water-icons');
+const waterCountDisplay = document.getElementById('water-count');
+const waterGoal = 8;
+let waterCount = Number(localStorage.getItem(`water_${today}`)) || 0;
+
+const updateWaterUI = () => {
+    waterCountDisplay.textContent = waterCount;
+    waterIconsContainer.innerHTML = '';
+    for (let i = 1; i <= waterGoal; i++) {
+        const isFilled = i <= waterCount;
+        waterIconsContainer.innerHTML += `<div class="text-3xl ${isFilled ? 'text-blue-500' : 'text-gray-300'}">💧</div>`;
+    }
+};
+
+document.getElementById('add-water-btn').addEventListener('click', () => {
+    if (waterCount < waterGoal) {
+        waterCount++;
+        localStorage.setItem(`water_${today}`, waterCount);
+        updateWaterUI();
+    }
+});
+updateWaterUI(); // Initial UI update
+
+// --- Daily Tip ---
+const tips = [
+    "Drink a glass of water first thing in the morning to kickstart your metabolism.",
+    "Incorporate leafy greens like spinach (palak) into your dal or sabzi for extra nutrients.",
+    "Swap white rice for brown rice or quinoa for more fiber and a lower glycemic index.",
+    "A handful of almonds or walnuts makes for a perfect, protein-rich evening snack.",
+    "Try to walk for at least 10 minutes after your dinner to aid digestion.",
+    "Replace sugary drinks with coconut water or fresh lime soda (nimbu pani).",
+    "Practice deep breathing for 5 minutes a day to reduce stress and cortisol levels."
+];
+const dayOfYear = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+document.getElementById('daily-tip').textContent = tips[dayOfYear % tips.length];
+// --- BMI Calculator Logic ---
+const heightInput = document.getElementById('height-input');
+const weightInput = document.getElementById('weight-input');
+const calculateBmiBtn = document.getElementById('calculate-bmi-btn');
+const bmiResultDisplay = document.getElementById('bmi-result');
+
+// Load saved data from localStorage
+heightInput.value = localStorage.getItem('userHeight') || '';
+weightInput.value = localStorage.getItem('userWeight') || '';
+
+const calculateAndDisplayBMI = () => {
+    const height = parseFloat(heightInput.value);
+    const weight = parseFloat(weightInput.value);
+
+    if (height > 0 && weight > 0) {
+        const heightInMeters = height / 100;
+        const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(1);
+        
+        let category = '';
+        if (bmi < 18.5) category = 'Underweight';
+        else if (bmi < 24.9) category = 'Normal weight';
+        else if (bmi < 29.9) category = 'Overweight';
+        else category = 'Obesity';
+
+        bmiResultDisplay.innerHTML = `Your BMI is <span class="text-forest text-xl">${bmi}</span> (${category})`;
+        
+        // Save to localStorage
+        localStorage.setItem('userHeight', height);
+        localStorage.setItem('userWeight', weight);
+    }
+};
+
+calculateBmiBtn.addEventListener('click', calculateAndDisplayBMI);
+calculateAndDisplayBMI();// Calculate on page load if data exists
+// --- Weekly Progress Chart Logic ---
+const chartContainer = document.querySelector('.h-48');
+const chartLabelsContainer = document.getElementById('weekly-chart-labels');
+const dailyCalorieGoal = Number(localStorage.getItem('calorieGoal')) || 2000;
+
+const renderWeeklyChart = () => {
+    chartContainer.innerHTML = '';
+    chartLabelsContainer.innerHTML = '';
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    for (let i = 6; i >= 0; i--) {
+        const date = new Date();
+        date.setDate(date.getDate() - i);
+        const dateString = date.toISOString().split('T')[0];
+        const dayName = days[date.getDay()];
+        
+        const calories = Number(localStorage.getItem(`calories_${dateString}`)) || 0;
+        const barHeight = Math.min((calories / dailyCalorieGoal) * 100, 100);
+
+        const bar = `<div class="w-8 bg-saffron rounded-t-md" style="height: ${barHeight}%;" title="${calories} kcal on ${dayName}"></div>`;
+        const label = `<div class="w-8 text-center">${dayName}</div>`;
+
+        chartContainer.innerHTML += bar;
+        chartLabelsContainer.innerHTML += label;
+    }
+};
+
+renderWeeklyChart();
+// Also, re-render the chart whenever new calories are added
+document.getElementById('add-calorie-btn').addEventListener('click', renderWeeklyChart);
+document.getElementById('edit-goal-btn').addEventListener('click', () => {
+    // A small delay to allow the prompt to finish and value to save
+    setTimeout(renderWeeklyChart, 100);
+});
+// --- Recipe Book Meal Suggester Logic (Corrected for Timing) ---
+const suggestMealBtnBook = document.getElementById('suggest-meal-btn-book');
+const ingredientsInputBook = document.getElementById('ingredients-input-book');
+const mealSuggestionResultBook = document.getElementById('meal-suggestion-result-book');
+
+// Load the recipe database when the page loads
+fetch('recipes.json')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(recipeBook => { // recipeBook variable is now guaranteed to have the data
+        console.log("Recipe book loaded successfully!");
+
+        // The button's "brain" is now INSIDE the .then() block
+        suggestMealBtnBook.addEventListener('click', () => {
+            const userInput = ingredientsInputBook.value.toLowerCase();
+            if (userInput.trim() === '') {
+                mealSuggestionResultBook.style.display = 'block';
+                mealSuggestionResultBook.innerHTML = '<p class="text-gray-600">Please enter some ingredients.</p>';
+                return;
+            }
+            const userIngredients = userInput.split(',').map(item => item.trim());
+            
+            let bestMatch = null;
+            let maxMatchCount = 0;
+
+            // Find the best recipe based on matching ingredients
+            recipeBook.forEach(recipe => {
+                let currentMatchCount = 0;
+                userIngredients.forEach(userIng => {
+                    if (recipe.keywords.includes(userIng)) {
+                        currentMatchCount++;
+                    }
+                });
+                if (currentMatchCount > maxMatchCount) {
+                    maxMatchCount = currentMatchCount;
+                    bestMatch = recipe;
+                }
+            });
+
+            mealSuggestionResultBook.style.display = 'block';
+            if (bestMatch && maxMatchCount > 0) {
+const instructionsHtml = bestMatch.instructions.split(/\d+\.\s*/).filter(step => step.trim() !== '').map(step => `<li>${step.trim()}</li>`).join('');
+                
+                mealSuggestionResultBook.innerHTML = `
+                    <h3 class="font-bold text-lg text-forest">${bestMatch.name}</h3>
+                    <p class="text-sm text-gray-600">${bestMatch.description}</p>
+                    <p class="text-sm font-semibold mt-2">Instructions:</p>
+                    <ol class="list-decimal list-inside text-sm">${instructionsHtml}</ol>`;
+            } else {
+                mealSuggestionResultBook.innerHTML = '<p class="text-gray-600">Sorry, no matching recipe was found in our book for those ingredients.</p>';
+            }
+        });
+    })
+    .catch(error => {
+        console.error("Error loading or processing recipe book:", error);
+        mealSuggestionResultBook.style.display = 'block';
+        mealSuggestionResultBook.innerHTML = '<p class="text-red-500">Could not load the recipe book. Please try refreshing the page.</p>';
+    });
+        </script>
+        <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="o8HCRtJIq1AaTk9MV1NkF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+</body>
+</html>

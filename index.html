@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arogya Mitra - Your Personal AI Nutritionist, Made for India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'forest': '#228B22', 'saffron': '#FF9933' }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .pulse-button { animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0,0,0, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(0,0,0, 0); } 100% { box-shadow: 0 0 0 0 rgba(0,0,0, 0); } }
+    </style>
+</head>
+<body class="bg-white">
+ <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <a href="#" class="flex items-center space-x-3">
+                <img class="h-10 w-auto" src="AROGYA MITRA.png" alt="Arogya Mitra Logo">
+                <span class="text-2xl font-bold text-forest">Arogya Mitra</span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#features" class="text-gray-700 hover:text-forest">Features</a>
+                <a href="#why-us" class="text-gray-700 hover:text-forest">Why Us?</a>
+                <a href="https://www.instagram.com/arogy_amitra" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-forest transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <span id="userInfoNav" class="text-sm text-gray-600" style="display: none;"></span>
+                <a href="dashboard.html" id="dashboardBtnNav" class="font-semibold text-forest hover:underline" style="display: none;">My Dashboard</a>
+                <button id="loginBtnNav" class="text-gray-700 hover:text-forest font-medium" onclick="window.openAuthModal('login')">Login</button>
+                <button id="signupBtnNav" class="bg-saffron text-white px-6 py-2 rounded-full font-medium" onclick="window.openAuthModal('signup')">Sign Up</button>
+                <button id="logoutBtnNav" class="bg-gray-200 text-gray-800 px-6 py-2 rounded-full font-medium" style="display: none;">Logout</button>
+            </div>
+            <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100"></div>
+</nav>
+
+    <section id="home" class="relative flex items-center justify-center h-screen overflow-hidden">
+    
+    <video autoplay loop muted playsinline class="absolute z-0 w-auto min-w-full min-h-full max-w-none">
+        <source src="BACKGROUND.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+
+    <div class="relative z-20 text-white text-center px-4">
+        <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight drop-shadow-md">
+            Your Personal AI Nutritionist, <br> Made for India
+        </h1>
+        <p class="text-xl mb-10 max-w-3xl mx-auto drop-shadow-sm">
+            Finally, an AI wellness coach that understands your love for Indian food, respects your culture, and crafts a health plan that feels like home.
+        </p>
+        <button onclick="window.openAuthModal('signup')" class="bg-saffron px-10 py-4 rounded-full font-semibold text-xl shadow-lg hover:scale-105 transition-transform">
+            Get  Your  Plan
+        </button>
+    </div>
+
+</section>
+                </div>
+                <div class="relative hidden lg:block">
+                    <div class="floating relative">
+                        <div class="w-80 h-[450px] mx-auto bg-gradient-to-br from-forest to-sage rounded-3xl p-6 shadow-2xl">
+                            <div class="bg-white rounded-2xl h-full p-4 flex flex-col">
+                                <div class="flex items-center space-x-2 mb-4">
+                                    <div class="w-8 h-8 bg-saffron rounded-full flex items-center justify-center"><span class="text-white text-sm"><img class="h-10 w-auto" src="AROGYA MITRA.png" alt="Arogya Mitra Logo"></span></div>
+                                    <span class="font-semibold text-forest">Aromi</span>
+                                </div>
+                                <div class="bg-green-50 rounded-xl p-3 mb-3">
+                                    <div class="text-sm text-forest font-medium mb-2">Today's Meal Plan</div>
+                                    <div class="space-y-1 text-xs"><p>🌅 Breakfast: Poha</p><p>🌞 Lunch: Dal-chawal</p><p>🌙 Dinner: Roti & Sabzi</p></div>
+                                </div>
+                                <div class="bg-saffron/10 rounded-xl p-3">
+                                    <div class="text-sm font-medium text-gray-800 mb-2">💬 Ask your AI coach</div>
+                                    <p class="text-xs text-gray-600">"Is ghee healthy for weight loss?"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">A Smarter Way to Stay Healthy</h2>
+            <p class="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">Everything you need for a healthier lifestyle, designed for the modern Indian.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                    <span class="text-4xl">🍛</span>
+                    <h3 class="text-2xl font-semibold text-gray-900 my-4">Indian Meal Plans</h3>
+                    <p class="text-gray-600">Get personalized diet plans featuring authentic dishes you love, from North Indian thalis to South Indian breakfasts.</p>
+                </div>
+                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                    <span class="text-4xl">💬</span>
+                    <h3 class="text-2xl font-semibold text-gray-900 my-4">AI Chat Coach</h3>
+                    <p class="text-gray-600">Have a question about a recipe or a food item? Get instant, intelligent answers from your AI nutritionist, 24/7.</p>
+                </div>
+                <div class="feature-card bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                    <span class="text-4xl">📊</span>
+                    <h3 class="text-2xl font-semibold text-gray-900 my-4">Progress Tracking</h3>
+                    <p class="text-gray-600">Monitor your health journey with detailed analytics, weight tracking, and achievement milestones to stay motivated.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="py-24 bg-forest/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Finally, a Health App That Gets You</h2>
+                <p class="text-xl text-gray-600 mb-16 max-w-3xl mx-auto">Generic advice doesn't work. You need a plan that understands your culture, your kitchen, and your cravings. That's the Arogya Mitra difference.</p>
+            </div>
+            <div class="bg-white rounded-3xl p-12 shadow-lg text-center max-w-4xl mx-auto">
+                <p class="text-3xl font-semibold leading-relaxed text-gray-800">"I lost 5 kgs in two months without giving up on my favorite home-cooked meals. Arogya Mitra feels less like a diet app and more like a wise friend."</p>
+                <p class="mt-8 font-bold text-xl text-gray-900">- Priya S,Bengaluru</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+                <div class="md:col-span-2">
+                     <a href="#" class="flex items-center space-x-3 justify-center md:justify-start mb-4">
+                        <img class="h-10 w-auto" src="AROGYA MITRA.png" alt="Arogya Mitra Logo">
+                        <span class="text-2xl font-bold">Arogya Mitra</span>
+                    </a>
+                    <p class="text-gray-400 max-w-xs mx-auto md:mx-0">Your journey to a healthier, happier you. Built with love, for India.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 tracking-wider uppercase">Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                 <div>
+                    <h3 class="font-semibold mb-4 tracking-wider uppercase">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-500 text-sm">&copy; 2025 Arogya Mitra. All Rights Reserved.
+                    <p>ANISH BASU   SUDIPTA BASU</p>
+                     &copy;<h6>A Patented Company 2025</h6>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="auth.js"></script>
+</body>
+</html>
