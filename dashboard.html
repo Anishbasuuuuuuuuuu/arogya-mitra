@@ -113,8 +113,6 @@
 
         const logoutBtn = document.getElementById('logoutBtn');
         const userNameDisplay = document.getElementById('user-name');
-        const upgradeBtn = document.getElementById('upgradeBtn');
-
         // --- Logic to Display User Name ---
         onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -352,3 +350,4 @@ const instructionsHtml = bestMatch.instructions.split(/\d+\.\s*/).filter(step =>
 </body>
 
 </html>
+
